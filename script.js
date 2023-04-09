@@ -23,7 +23,7 @@ function virarCarta(carta) {
     cartaSelecionadaBack1 = carta2;
     cartasViradas++;
     jogadas++;
-    }else if (carta2.classList.contains(".back") === false && cartasViradas === 1){
+    }else if (carta2.classList.contains(".back") === false && cartasViradas === 1 && carta1  != cartaSelecionadaFront1){
     carta1.classList.toggle("front");
     carta2.classList.toggle("back");
     cartaSelecionadaFront2 = carta1;
@@ -54,12 +54,13 @@ function virarCarta(carta) {
   }
 
   function notPar (){
-    
+   
         cartaSelecionadaFront1.classList.toggle("front");
         cartaSelecionadaBack1.classList.toggle("back");
         cartaSelecionadaFront2.classList.toggle("front");
         cartaSelecionadaBack2.classList.toggle("back");
         cartasViradas = 0;
+    
     }
  const cardsParrot = [
     "./img/p1.gif",
