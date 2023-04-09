@@ -1,5 +1,6 @@
 let cartasViradas = 0;
 let par = 0;
+let jogadas = 0;
 let cartaSelecionadaBack1 = '';
 let cartaSelecionadaBack2 = '';
 let cartaSelecionadaFront1 = '';
@@ -21,25 +22,35 @@ function virarCarta(carta) {
     cartaSelecionadaFront1 = carta1;
     cartaSelecionadaBack1 = carta2;
     cartasViradas++;
+    jogadas++;
     }else if (carta2.classList.contains(".back") === false && cartasViradas === 1){
     carta1.classList.toggle("front");
     carta2.classList.toggle("back");
     cartaSelecionadaFront2 = carta1;
     cartaSelecionadaBack2 = carta2;
     cartasViradas++;
-   
+    jogadas++;
     verificaPar();
     }
   }
   
 
   function verificaPar (){
-    if (cartaSelecionadaBack1 === cartaSelecionadaBack2){
+    if (cartaSelecionadaBack1.querySelector('img').src === cartaSelecionadaBack2.querySelector('img').src){
         par ++;
         cartasViradas = 0;
-    }else {
+        if(numeroCartas/2 === par){
+            setTimeout(fimJogo, 1000);
+        }
+    }else if(cartaSelecionadaBack1.querySelector('img').src != cartaSelecionadaBack2.querySelector('img').src){
         setTimeout(notPar,1000);
     }
+    
+  }
+
+  function fimJogo(){
+    alert(`Você ganhou em ${jogadas} jogadas!`);
+
   }
 
   function notPar (){
@@ -83,9 +94,9 @@ function addCartas (){
     const jogo = document.querySelector('.cards1');
     let cont = 0;
     while (cont < numeroCartas){
-        jogo.innerHTML += ` <div onclick ="virarCarta(this)" class="card">
-        <div class ="carta1 face" ><img src="./img/back.png"></div>
-        <div class ="carta2 back-face face"><img src="${cardsRandom[cont]}"></div>
+        jogo.innerHTML += ` <div data-test="card" onclick ="virarCarta(this)" class="card">
+        <div data-test = "face-down-image" class ="carta1 face" ><img src="./img/back.png"></div>
+        <div data-test = "face-up-image" class ="carta2 back-face face"><img src="${cardsRandom[cont]}"></div>
     </div>`;
         cont++;
     }
