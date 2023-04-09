@@ -94,9 +94,9 @@ function addCartas (){
     const jogo = document.querySelector('.cards1');
     let cont = 0;
     while (cont < numeroCartas){
-        jogo.innerHTML += ` <div data-test="card" onclick ="virarCarta(this)" class="card">
-        <div data-test = "face-down-image" class ="carta1 face" ><img src="./img/back.png"></div>
-        <div data-test = "face-up-image" class ="carta2 back-face face"><img src="${cardsRandom[cont]}"></div>
+        jogo.innerHTML += ` <div data-test="card" onclick ="virarCarta(this)" class="cardCSS">
+        <div class ="carta1 face" ><img data-test = "face-down-image" src="./img/back.png"></div>
+        <div class ="carta2 back-face face"><img data-test = "face-up-image" src="${cardsRandom[cont]}"></div>
     </div>`;
         cont++;
     }
