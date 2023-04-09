@@ -1,3 +1,10 @@
+let cartasViradas = 0;
+let par = 0;
+let cartaSelecionadaBack1 = '';
+let cartaSelecionadaBack2 = '';
+let cartaSelecionadaFront1 = '';
+let cartaSelecionadaFront2 = '';
+
 let numeroCartas = prompt('Com quantas cartas deseja jogar? Digite um número entre 4 e 14!'); 
 while (numeroCartas%2 !== 0  || numeroCartas < 4 || numeroCartas > 14){
     numeroCartas = prompt('Com quantas cartas deseja jogar? Digite um número entre 4 e 14!');
@@ -7,11 +14,42 @@ while (numeroCartas%2 !== 0  || numeroCartas < 4 || numeroCartas > 14){
 
 function virarCarta(carta) {
     const carta1 = carta.querySelector(".carta1");
-    carta1.classList.toggle("front");
-
     const carta2 = carta.querySelector(".carta2");
+    if (carta2.classList.contains(".back") === false  && cartasViradas === 0){
+    carta1.classList.toggle("front");
     carta2.classList.toggle("back");
+    cartaSelecionadaFront1 = carta1;
+    cartaSelecionadaBack1 = carta2;
+    cartasViradas++;
+    }else if (carta2.classList.contains(".back") === false && cartasViradas === 1){
+    carta1.classList.toggle("front");
+    carta2.classList.toggle("back");
+    cartaSelecionadaFront2 = carta1;
+    cartaSelecionadaBack2 = carta2;
+    cartasViradas++;
+   
+    verificaPar();
+    }
   }
+  
+
+  function verificaPar (){
+    if (cartaSelecionadaBack1 === cartaSelecionadaBack2){
+        par ++;
+        cartasViradas = 0;
+    }else {
+        setTimeout(notPar,1000);
+    }
+  }
+
+  function notPar (){
+    
+        cartaSelecionadaFront1.classList.toggle("front");
+        cartaSelecionadaBack1.classList.toggle("back");
+        cartaSelecionadaFront2.classList.toggle("front");
+        cartaSelecionadaBack2.classList.toggle("back");
+        cartasViradas = 0;
+    }
  const cardsParrot = [
     "./img/p1.gif",
     "./img/p2.gif",
